@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
-require_once 'db.php';
+require_once 'db011.php';
 
 // Ambil data yang dikirim service A
 $input = json_decode(file_get_contents('php://input'), true);
@@ -33,7 +33,7 @@ if ($ph < 5.5) {
 }
 
 // Simpan ke database
-$stmt = $pdo->prepare("INSERT INTO hasil_klasifikasi (ph, lembap_udara, hasil) VALUES (?, ?, ?)");
+$stmt = $pdo->prepare("INSERT INTO hasil_klasifikasi_perhitungan (ph, lembap_udara, hasil) VALUES (?, ?, ?)");
 $stmt->execute([$ph, $lembap_udara, $hasil]);
 
 // Kembalikan response

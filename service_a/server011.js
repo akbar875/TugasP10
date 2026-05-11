@@ -2,9 +2,14 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 
 const app = express();
-const port = 3000;
+const port = 3780;
 
 app.use(express.json());
+
+// throttling untuk mendelay setiap request 300ms
+const throttle = (req, res, next) => {
+    setTimeout(next, 300);
+};
 
 // Rate Limiting: maks 5 request per menit
 const limiter = rateLimit({
@@ -17,6 +22,7 @@ const limiter = rateLimit({
   legacyHeaders: false,
 });
 
+app.use(throttle);
 app.use(limiter);
 
 // Route cek service a berjalan
@@ -35,7 +41,7 @@ app.post('/klasifikasi', async (req, res) => {
 
     try {
         // Kirim request ke Service B
-        const response = await fetch('http://localhost/service_b/index011.php', {
+        const response = await fetch('http://103.147.92.134/service_b/index011.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ph, lembap_udara })
@@ -52,5 +58,5 @@ app.post('/klasifikasi', async (req, res) => {
 
 // Menjalankan server
 app.listen(port, () => {
-    console.log(`Service A berjalan di http://localhost:${port}`);
+    console.log(`Service A berjalan di http://103.147.92.134:${port}`);
 });
