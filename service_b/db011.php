@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$dbname = 'hidroponik011';
+$dbname = 'AkbarFitriAndhika_2410511011_A_TugasPertemuan10';
 $username = 'mahasiswa';
 $password = 'akucintafik'; 
 
