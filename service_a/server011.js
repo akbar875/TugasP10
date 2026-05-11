@@ -41,7 +41,7 @@ app.post('/klasifikasi', async (req, res) => {
 
     try {
         // Kirim request ke Service B
-        const response = await fetch('http://103.147.92.134/service_b/index011.php', {
+        const response = await fetch('http://103.147.92.134:3880/index011.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ph, lembap_udara })
